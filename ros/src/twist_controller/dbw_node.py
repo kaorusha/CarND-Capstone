@@ -68,7 +68,7 @@ class DBWNode(object):
         self.current_vel = None
         self.curr_ang_vel = None
         # save twist cmd content
-        self.lenear_vel = None
+        self.linear_vel = None
         self.angular_vel = None
         # save state content
         self.dbw_enabled = None
@@ -88,7 +88,7 @@ class DBWNode(object):
             #                                                     <dbw status>,
             #                                                     <any other argument you need>)
             self.throttle, self.brake, self.steering = self.controller.control(
-                linear_vel = self.lenear_vel, angular_vel = self.angular_vel,
+                linear_vel = self.linear_vel, angular_vel = self.angular_vel,
                 curr_vel =self.current_vel, state=self.dbw_enabled)
             # if <dbw is enabled>:
             #   self.publish(throttle, brake, steer)
@@ -98,7 +98,7 @@ class DBWNode(object):
         self.current_vel = msg.twist.linear.x
 
     def twist_cb(self, msg):
-        self.lenear_vel = msg.twist.linear.x
+        self.linear_vel = msg.twist.linear.x
         self.angular_vel = msg.twist.angular.z
 
     def state_cb(self, msg):

@@ -49,7 +49,7 @@ class WaypointUpdater(object):
     def loop(self):
         rate = rospy.Rate(50)
         while not rospy.is_shutdown():
-            if self.pose and self.waypoints:
+            if self.pose and self.kd_tree:
                 id = self.get_closest_waypoint_id()
                 self.publish_waypoints(id)
             rate.sleep()
