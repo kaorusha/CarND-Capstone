@@ -92,6 +92,8 @@ class DBWNode(object):
                 curr_vel =self.current_vel, state=self.dbw_enabled)
             # if <dbw is enabled>:
             #   self.publish(throttle, brake, steer)
+            if self.dbw_enabled:
+                self.publish(self.throttle, self.brake, self.steering)
             rate.sleep()
 
     def vel_cb(self, msg):
