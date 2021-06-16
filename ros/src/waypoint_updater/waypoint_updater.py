@@ -48,7 +48,8 @@ class WaypointUpdater(object):
         self.kd_tree = None
         self.stop_wp_id = -1
         self.decel_limit = decel_limit
-        self.speed_limit = speed_limit
+        # kmph to mps
+        self.speed_limit = (speed_limit * 1000.) / (60. * 60.)
 
         self.loop()
 
@@ -80,7 +81,8 @@ class WaypointUpdater(object):
         lane.header = self.base_waypoints.header
         lane.waypoints = self.base_waypoints.waypoints[closest_idx: closest_idx + LOOKAHEAD_WPS]
         if self.stop_wp_id != -1 and self.stop_wp_id < closest_idx + LOOKAHEAD_WPS:
-            lane.waypoints = self.decelerate_waypoints(lane.waypoints, closest_idx)
+            lane.waypoints = self.decelerate_waypoints(
+                lane.waypoints, closest_idx)
         self.final_waypoints_pub.publish(lane)
 
     def decelerate_waypoints(self, waypoints, closest_idx):
