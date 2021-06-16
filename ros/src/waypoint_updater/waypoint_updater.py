@@ -37,7 +37,6 @@ class WaypointUpdater(object):
         # TODO: Add a subscriber for /traffic_waypoint and /obstacle_waypoint below
         rospy.Subscriber('/traffic_waypoint', Int32, self.traffic_cb)
         decel_limit = rospy.get_param('/dbw_node/decel_limit', -5.0)
-        speed_limit = rospy.get_param('/waypoint_loader/velocity', 10)
         self.final_waypoints_pub = rospy.Publisher(
             'final_waypoints', Lane, queue_size=1)
 
@@ -48,8 +47,6 @@ class WaypointUpdater(object):
         self.kd_tree = None
         self.stop_wp_id = -1
         self.decel_limit = decel_limit
-        # kmph to mps
-        self.speed_limit = (speed_limit * 1000.) / (60. * 60.)
 
         self.loop()
 
@@ -94,7 +91,7 @@ class WaypointUpdater(object):
             dist = self.distance(waypoints, i, stop_id)
             vel = math.sqrt(2 * abs(self.decel_limit) * dist)
             vel = max(vel, 0.0)
-            vel = min(self.speed_limit, vel)
+            # the original wp already take care of the speed limit
             p.twist.twist.linear.x = min(vel, wp.twist.twist.linear.x)
             temp.append(p)
         return temp
