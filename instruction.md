@@ -17,8 +17,14 @@ source devel/setup.sh
 roslaunch launch/styx.launch
 ```
 6. Run the simulator in **Windows**, because of the port forwarding, the simulator and the ros topics are communicating
-7. Here is the result video (10x faster than original video clip)
+7. Here is the [result video](result.mp4) (10x faster than original video clip)
 ### note 
+The code is based on the following lessen:
+* [Waypoint Updater Partial Walkthrough](https://classroom.udacity.com/nanodegrees/nd013/parts/b9040951-b43f-4dd3-8b16-76e7b52f4d9d/modules/85ece059-1351-4599-bb2c-0095d6534c8c/lessons/01cf7801-7665-4dc5-a800-2a9cca06b38b/concepts/e4ed7b44-6330-48a2-bfb0-fd65fff1b4d1)
+* [DBW Walkthrough](https://classroom.udacity.com/nanodegrees/nd013/parts/b9040951-b43f-4dd3-8b16-76e7b52f4d9d/modules/85ece059-1351-4599-bb2c-0095d6534c8c/lessons/01cf7801-7665-4dc5-a800-2a9cca06b38b/concepts/6546d82d-6028-4210-a4b0-9d559662a881)
+* [Detection Walkthrough](https://classroom.udacity.com/nanodegrees/nd013/parts/b9040951-b43f-4dd3-8b16-76e7b52f4d9d/modules/85ece059-1351-4599-bb2c-0095d6534c8c/lessons/01cf7801-7665-4dc5-a800-2a9cca06b38b/concepts/1776782c-5f60-4ada-b224-319cc61ef202)
+* [Full Waypoint Walkthrough](https://classroom.udacity.com/nanodegrees/nd013/parts/b9040951-b43f-4dd3-8b16-76e7b52f4d9d/modules/85ece059-1351-4599-bb2c-0095d6534c8c/lessons/01cf7801-7665-4dc5-a800-2a9cca06b38b/concepts/6e0119de-5a6f-4c62-a22b-a0659d0d235e)
+
 An Optional challenge is using SSD architecture to process the incoming camera image and give new velocity of waypoints command when there is a red traffic light. This is not completed because the environment setting is complicated using a VM. For ones that still want to implement, here are some reference:
 * [vatsl's repo](https://github.com/vatsl/TrafficLight_Detection-TensorFlowAPI) including lebeled training data
 * [additional training data](https://www.uni-ulm.de/en/in/driveu/projects/driveu-traffic-light-dataset/)
